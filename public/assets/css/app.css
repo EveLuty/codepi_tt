@@ -1,0 +1,160 @@
+html {
+    min-width: 320px;
+
+}
+
+body {
+    /*font: normal 100% Helvetica, Arial, sans-serif;*/
+    color: gainsboro;
+    font: normal 100% proxima-nova, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    padding-bottom: 5px;
+    padding-top: 60px;
+    background: linear-gradient(135deg, #639DAF 0%, #8A3187 100%);
+}
+
+a:hover {}
+
+a:link {
+    color: gainsboro;
+    font-weight: bold;
+}
+
+a:visited {
+    color: gainsboro;
+}
+
+a:focus {}
+
+.navbar {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 0px 2px 6px #553100;
+    background-color: gainsboro;
+    background: linear-gradient(135deg, #e7e7e7 0%, #286090 100%);
+}
+
+.loginSingnup {
+    text-align: right;
+    padding-right: 5%;
+}
+
+.title-logo{
+    font-size: 100%;
+    color:#337AB7;
+}
+.topBar {
+    /*background-color: transparent;*/
+}
+
+.footBar {
+    margin-top: 267px;
+    height: 55px;
+    margin-bottom: -5px;
+    text-align: center;
+    background: none;
+    background-color: transparent;
+    border-radius: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 0px;
+    border-bottom-style: none;
+    color: gainsboro;
+}
+
+.btn:hover {}
+
+button:link,
+button:visited,
+button:focus {
+    outline: none;
+}
+
+.btn {}
+
+button {
+    background-color: #618EB5;
+    border-color: floralwhite;
+    color: gainsboro;
+}
+
+/* index.php */
+.filter{
+    padding: 6px;
+    box-shadow: 0px 2px 1px #553100;
+}
+
+.concert-content{
+    margin-top: 10px;
+}
+
+.content{
+    font-size: 80%;
+    width: 90%;
+    padding :2%;
+
+}
+
+/* concert.php */
+
+.concert{
+    margin-top: 10px;
+}
+.panel-concert{
+    width : 70%;
+    position: relative;
+    float :left;
+}
+
+.concert-title{
+    padding :5px;
+    font-size: 25px;
+}
+
+.floatR{
+    float:right;
+}
+
+.floatL{
+    float:left;
+}
+
+.nav{
+    font-size: 15px;
+}
+
+.concert-description{
+    font-size: 20px;
+}
+
+
+.panel-pre-commander{
+    position: relative;
+    float : right;
+    width : 25%;
+    box-shadow: 1px 2px 25px #78A4F5;
+    padding: 4px;
+}
+
+.connexion{
+    padding:80px;
+    width :30%;
+}
+
+/* admin.php */
+button.btn-create{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* createOrUpdate */
+div.modifier{
+    width:40%;
+}
+table.table {
+    
+}
+table.table th{
+    width:20%;
+    text-align : right;
+}

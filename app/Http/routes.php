@@ -11,6 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'mainController@index');
+Route::get('concert/{concert}', 'concertController@show');
+Route::get('connexion', 'mainController@toConnexion');
+Route::get('deconnexion', 'mainController@deConnexion');
+
+Route::get('login', 'mainController@connexion');
+
+Route::get('admin/{concert}', 'concertController@edit');
+Route::get('admin', 'concertController@create');
+
+Route::get('update/{concert}', 'concertController@update');
+Route::get('delete/{concert}', 'concertController@destroy');
+Route::get('create', 'concertController@store');
+
+
+
