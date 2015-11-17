@@ -68,7 +68,7 @@ class mainController extends Controller
     public function filter(Request $request)
     {
          $request->input('q');
-         $concerts = Concert::paginate(10);
+         $concerts = Concert::paginate(9);
          $reponse='<div class="row">';
         
         foreach ($concerts as $concert) {

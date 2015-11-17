@@ -27,7 +27,5 @@ Route::get('create', 'concertController@store');
 
 
 Route::get('filter','mainController@filter');
-Route::get('listConcert','mainController@listConcert');
-
 
 
