@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <h1>
-                    Parcourir les concerts à venir
+                    Parcourir les concerts à venir</p>
                 </h1>
             </div>
         </div>
@@ -17,7 +17,7 @@
             </div>
             <div class="col-xs-2">
                 Ville :
-                <select class="form-control">
+                <select class="form-control" onchange = "filter(this.value)">
                     @foreach($villes as $oneVille)
                     <option>{{ $oneVille->Ville }}</option>
                     @endforeach
@@ -33,7 +33,7 @@
             </div>
             <div class="col-xs-1">
                 Prix :
-                <select class="form-control">
+                <select class="form-control" id=>
                     <option value="20">
                         <20</option>
                             <option value="30">20-30</option>
@@ -51,7 +51,7 @@
         </div>
     </div>
 </div>
-<div class="container content">
+<div class="container content" id="list-concert">
     <div class="row">
         <?php foreach ($concerts as $concert): ?>
             <div class="col-xs-4 concert-content container">
@@ -76,11 +76,13 @@
             </div>
             <?php endforeach; ?>
     </div>
-</div>
-<div class="container-fluid">
+    <div class="container-fluid">
           <center>
           	<?php echo $concerts->render(); ?>
         </center>
 </div>
+</div>
+</div>
+
 
 @endSection
