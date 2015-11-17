@@ -65,6 +65,47 @@ class mainController extends Controller
         //
     }
 
+    public function filter(Request $request)
+    {
+         $request->input('q');
+         $concerts = Concert::paginate(10);
+         $reponse='<div class="row">';
+        
+        foreach ($concerts as $concert) {
+            $reponse .=<<<cc
+            <div class="col-xs-4 concert-content container">
+        <h5><b> {$concert->artiste->Nom} </b> <span style="float:right">@  $concert->Lieu -  $concert->Ville <span></h5>
+        <a href="/concert/$concert->id">
+                    <img src="/assets/images/{$concert->artiste->Image}" class="img-rounded" height="250" width="100%">
+                </a>
+        <br>
+        <div class="col-xs-8">
+            $concert->Date 
+        </div>
+        <div class="col-xs-4">
+            Prix: $concert->Prix 
+        </div>
+        <br>
+        <div class="col-xs-8">
+            <i>{$concert->artiste->Tags}</i>
+        </div>
+        <div class="col-xs-4">
+            <a href="/concert/$concert->id">Voir le détails ></a>
+        </div>
+    </div>
+cc;
+    }
+        $reponse .=<<<cc
+        </div>
+        <div class="container-fluid">
+            <center>
+                {$concerts->render()}
+            </center>
+        </div>
+cc;
+        return $reponse; 
+    }
+
     /**
      * Store a newly created resource in storage.
      *
