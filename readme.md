@@ -1,5 +1,21 @@
 #README - Tianyu LU
 
+##Update 19.11.2015
+-	acomplir la fonction 'filter' réalisée par AJAX
+-	créer des api dans le Model 'concert' afin de filter les données
+-	changer les structure de BD pour filter l'attribute 'DATE' et il y a un nouvelle version fichier .csv pour importer des données dans BD
+
+##*problème
+	
+-	car le problème de SESSION de Laravel, on ne peux pas stokager les données(ville,tags,prix etc) que avait selectionnées, donc il a encore marche pas lorsqu'on changer le page après 'filter'.
+-	je vais continuer à recherche la solution de SESSION
+
+
+
+
+
+------------------------------------------------------------------
+16.11.2015
 ###*Pas encore fini : 
 -	filter (AJAX)
 -	validation de input dans FORM

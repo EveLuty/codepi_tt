@@ -47,7 +47,7 @@ class concertController extends Controller
     {
         $_date = $request->input("date");
         $_dateTemp = DateTime::createFromFormat('Y-m-d', $_date);
-        $date =$_dateTemp->format('d/m/Y'); 
+        $date =$_dateTemp->format('Y-m-d'); 
         $_time = $request->input("time");
         $_timeTemp= DateTime::createFromFormat('H:i', $_time);
         $time= $_timeTemp->format('H:i:s'); 
@@ -85,7 +85,7 @@ class concertController extends Controller
     {
         $mode=true;
         $concert = Concert::findOrFail($id);
-        $myDateTime = DateTime::createFromFormat('d/m/Y H:i:s', $concert->Date);
+        $myDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $concert->Date);
         $dateString = $myDateTime->format('Y-m-d'); 
         $timeString = $myDateTime->format('H:i'); 
 
@@ -108,7 +108,7 @@ class concertController extends Controller
         $concert->Lieu = $request->input("lieu");
         $_date = $request->input("date");
         $_dateTemp = DateTime::createFromFormat('Y-m-d', $_date);
-        $date =$_dateTemp->format('d/m/Y'); 
+        $date =$_dateTemp->format('Y-m-d'); 
         $_time = $request->input("time");
         $_timeTemp= DateTime::createFromFormat('H:i', $_time);
         $time= $_timeTemp->format('H:i:s'); 

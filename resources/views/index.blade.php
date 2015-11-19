@@ -1,4 +1,5 @@
 @extends('app') @section('content')
+<script></script>
 <div class="filter">
     <div class="container-fluid">
         <div class="row">
@@ -9,7 +10,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-2 col-xs-offset-1">
+            <div class="col-xs-2">
                 <h4>
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                     Filtrer les concerts    
@@ -17,72 +18,54 @@
             </div>
             <div class="col-xs-2">
                 Ville :
-                <select class="form-control" onchange = "filter(this.value)">
+                <select class="form-control" id="ville" onchange = "filter()">
+                    <option >Select Ville</option>
                     @foreach($villes as $oneVille)
-                    <option>{{ $oneVille->Ville }}</option>
+                        @if (Session::get('ville') === $oneVille->Ville)
+                        <option selected>{{ $oneVille->Ville }}</option>
+                        @else
+                        <option>{{ $oneVille->Ville }}</option> {{$oneVille}}
+                        @endif
                     @endforeach
                 </select>
             </div>
-            <div class="col-xs-1">
+            <div class="col-xs-2">
                 Tags :
-                <select class="form-control">
+                <select class="form-control" id="tags" onchange = "filter()">
+                    <option >Select Tags</option>
                     @foreach($tags as $ontTag)
-                    <option>{{ $ontTag->Tags }}</option>
+                        @if (Session::get('tags') === $ontTag->Tags)
+                        <option selected>{{ $ontTag->Tags }}</option>
+                        @else
+                        <option>{{ $ontTag->Tags }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
-            <div class="col-xs-1">
+            <div class="col-xs-2">
                 Prix :
-                <select class="form-control" id=>
-                    <option value="20">
-                        <20</option>
-                            <option value="30">20-30</option>
-                            <option value="31">30+</option>
+                <select class="form-control" id="prix" onchange = "filter()">
+                    <option >Select Prix</option>
+                    <option value="20">20</option>
+                    <option value="30">20-30</option>
+                    <option value="31">30+</option>
                 </select>
             </div>
             <div class="col-xs-2">
                 Entre le
-                <input type="datetime" class="form-control ">
+                <input type="date" class="form-control " id="dateDeb" onchange = "filter()">
             </div>
             <div class="col-xs-2">
                 et le
-                <input type="date" class="form-control ">
+                <input type="date" class="form-control " id="dateFin" onchange = "filter()">
             </div>
         </div>
     </div>
 </div>
 <div class="container content" id="list-concert">
-    <div class="row">
-        <?php foreach ($concerts as $concert): ?>
-            <div class="col-xs-4 concert-content container">
-                <h5><b>{{ $concert->artiste->Nom }}</b> <span style="float:right">@ {{ $concert->Lieu}} - {{ $concert->Ville }}<span></h5>
-                <a href="{{action('concertController@show', [$concert->id])}}" >
-                	<img src="assets/images/{{ $concert->artiste->Image }}" class="img-rounded" height="250" width="100%">
-                </a>
-                <br>
-                <div class="col-xs-8">
-                    {{ $concert->Date }}
-                </div>
-                <div class="col-xs-4">
-                    Prix:{{ $concert->Prix }}
-                </div>
-                <br>
-                <div class="col-xs-8">
-                    <i>{{ $concert->artiste->Tags }}</i>
-                </div>
-                <div class="col-xs-4">
-                    <a href="{{action('concertController@show', [$concert->id])}}" >Voir le détails ></a>
-                </div>
-            </div>
-            <?php endforeach; ?>
-    </div>
-    <div class="container-fluid">
-          <center>
-          	<?php echo $concerts->render(); ?>
-        </center>
-</div>
+
 </div>
 </div>
 
-
+<script>window.onload = filter;</script>
 @endSection

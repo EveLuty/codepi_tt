@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Session;
 use App\Artiste;
 use App\Concert;
+use Input;
 
 class mainController extends Controller
 {
@@ -23,7 +24,7 @@ class mainController extends Controller
         $concerts = Concert::paginate(9);
         $villes = Concert::distinct()->select('Ville')->get();
         $tags = Artiste::distinct()->select('Tags')->get();
-        return view('index',compact('artistes','concerts','villes','tags'));
+        return view('index',compact('artistes','villes','tags'));
     }
 
     public function validateConnexion()
@@ -67,8 +68,66 @@ class mainController extends Controller
 
     public function filter(Request $request)
     {
-         $request->input('q');
-         $concerts = Concert::paginate(9);
+         //$input = $request->all();
+        $filter= false;
+        $concerts = Concert::begin();
+        $input = Input::except('sid');
+        if (Input::has('ville')){
+            $ville = Input::get('ville');
+            $concerts = $concerts->ville($ville);
+            Session::put('ville', $concerts);
+            $filter= true;
+        }else{
+            Session::forget('ville');
+        }
+
+        if (Input::has('prix')){
+            $prix = Input::get('prix');
+            $concerts = $concerts->prix($prix);
+            Session::put('prix', $concerts);
+            $filter= true;
+        }else{
+            Session::forget('prix');
+        }
+        if (Input::has('tags')){
+            $tags = Input::get('tags');
+            $concerts = $concerts->tags($tags);
+            Session::put('tags', $concerts);
+            $filter= true;
+        }else{
+            Session::forget('tags');
+        }
+        if (Input::has('dateDeb')){
+            $dateDeb = Input::get('dateDeb');
+            $concerts = $concerts->dateDeb($dateDeb);
+            Session::put('dateDeb', $concerts);
+            $filter= true;
+        }else{
+            Session::forget('dateDeb');
+        }
+        if (Input::has('dateFin')){
+            $dateFin = Input::get('dateFin');
+            $concerts = $concerts->dateFin($dateFin);
+            Session::put('dateFin', $concerts);
+            $filter= true;
+        }else{
+            Session::forget('dateFin');
+        }
+         //dd($input);//dd(gettype($ville) . $ville);
+         // $concerts = Concert::paginate(8, ['*'], 'page', $paginaId);
+
+        Session::put('dataConcert', $concerts);
+         $paginaId = $request->input('page');
+         if ($filter){
+            $temp=$concerts;
+            $concerts = $concerts->paginate(9, ['*'], 'page', $paginaId);
+            if ($paginaId > $concerts->lastpage()){
+                $concerts = $temp->paginate(9, ['*'], 'page', 1);
+            }
+            $concerts ->setPath('/');
+         }else{
+            $concerts=Concert::paginate(9, ['*'], 'page', $paginaId)->setPath('/');
+         }
          $reponse='<div class="row">';
         
         foreach ($concerts as $concert) {

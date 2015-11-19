@@ -17,7 +17,7 @@ class CreateConcertsTable extends Migration
             $table->string('Lieu');
             $table->string('Adresse');
             $table->string('Ville');
-            $table->string('Date');
+            $table->timestamp('Date');
             $table->double('Prix');
             $table->increments('id');
         });
